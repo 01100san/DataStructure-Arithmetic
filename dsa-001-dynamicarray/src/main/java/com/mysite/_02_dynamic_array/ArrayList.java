@@ -18,7 +18,7 @@ public class ArrayList <E> implements Serializable {
     //设置默认的数组容量默认长度为10
     private static final int DEFAULT_CAPACITY = 10;
     //声明动态数组
-    private Object[] elements;
+    private E[] elements;
 
     public ArrayList() {
         this(DEFAULT_CAPACITY);
@@ -27,7 +27,7 @@ public class ArrayList <E> implements Serializable {
         if (capacity < 0) throw new IndexOutOfBoundsException("数组容量初始化错误："+ capacity);
         //如果容量小于默认值，设为默认容量的大小，否则为指定的容量大小
         capacity = Math.max(capacity,DEFAULT_CAPACITY);
-        elements = new Object[capacity];
+        elements = (E[]) new Object[capacity];
     }
 
     /**
@@ -51,7 +51,7 @@ public class ArrayList <E> implements Serializable {
      * @param index
      * @return
      */
-    public Object get(int index){
+    public E get(int index){
         rangeCheck(index);
 
         return elements[index];
@@ -63,23 +63,30 @@ public class ArrayList <E> implements Serializable {
      * @param element 需要替换的元素
      * @return 替换前的值 oldVal
      */
-    public Object set(int index,Object element){
+    public E set(int index,E element){
         rangeCheck(index);
 
-        Object oldVal = elements[index];
+        E oldVal = elements[index];
         elements[index] = element;
         return oldVal;
     }
 
     /**
      * 根据元素查找数组中出现的第一个下标
-     * @param element 需要查找的元素
+     * @param element 需要查找的元素 可以是null
      * @return 下标 | -1
      */
-    public int indexOf(Object element){
-        for (int i = 0; i < size; i++) {
-            if (elements[i].equals(element))
-                return i;
+    public int indexOf(E element){
+        if (element == null){
+            for (int i = 0; i < size; i++) {
+                if (elements[i] == null)
+                    return i;
+            }
+        }else {
+            for (int i = 0; i < size; i++) {
+                if (elements[i].equals(element))
+                    return i;
+            }
         }
         return -1;
     }
@@ -89,7 +96,7 @@ public class ArrayList <E> implements Serializable {
      * @param element 需要查找的元素
      * @return true | false
      */
-    public boolean contains(Object element){
+    public boolean contains(E element){
         return indexOf(element) != -1;
     }
 
@@ -107,7 +114,7 @@ public class ArrayList <E> implements Serializable {
      * 向数组末中动态添加元素
      * @param element 添加的元素
      */
-    public void add(Object element){
+    public void add(E element){
         //判断是否需要扩容
         ensureCapacity(size + 1);
 
@@ -119,15 +126,18 @@ public class ArrayList <E> implements Serializable {
      * @param index 元素添加的指定位置
      * @param element 添加的指定元素
      */
-    public void add(int index, Object element){
+    public void add(int index, E element){
         rangeCheckForEq(index);
 
         //判断是否需要扩容
         ensureCapacity(size + 1);
 
-        for (int i = size; i > index; i--) {
+        System.arraycopy(elements,index,elements,index + 1,
+                size - index);
+
+        /*for (int i = size; i > index; i--) {
             elements[i] = elements[i - 1];
-        }
+        }*/
         elements[index] = element;
         size++;
     }
@@ -158,33 +168,45 @@ public class ArrayList <E> implements Serializable {
      * @param index 想要删除的数组下标
      * @return 根据下标删除的数组元素
      */
-    public Object remove(int index){
+    public E remove(int index){
         rangeCheck(index);
 
-        Object oldEle = elements[index];
-        for (int i = index + 1; i <= size - 1; i++) {
+        E oldEle = elements[index];
+
+        //设置源数组移动的位置 numRemoved
+        int numMoved = size - index - 1;
+        System.arraycopy(elements, index + 1,elements,index,numMoved);
+
+        //将index后的元素向前移动一位
+        /*for (int i = index + 1; i < size; i++) {
             elements[i - 1] = elements[i];
-        }
-        size --;
+        }*/
+
+        elements[--size] = null;
         return oldEle;
     }
 
     /**
      * 按照元素删除数组中出现的第一个元素
-     * @param element 想要删除的元素
+     * @param element 想要删除的元素 可以是null
      * @return 返回删除元素的下标
      */
-    public int remove(Object element){
+    public int remove(E element){
         //根据element查找对应的索引值
         int destIndex = indexOf(element);
 
         if (destIndex == -1)
             throw new IndexOutOfBoundsException("未找到指定元素");
 
-        for (int i = destIndex + 1; i <= size - 1; i++) {
+        //设置源数组移动的位置 numRemoved
+        int numMoved = size - destIndex - 1;
+        System.arraycopy(elements, destIndex + 1,elements,destIndex,numMoved);
+
+        /*for (int i = destIndex + 1; i < size; i++) {
             elements[i - 1] = elements[i];
-        }
-        size --;
+        }*/
+
+        elements[--size] = null;
         return destIndex;
     }
 
