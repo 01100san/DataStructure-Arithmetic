@@ -24,14 +24,29 @@ public class TestDynamicArray {
         list.add(15);
         list.add(15);
         list.add(15);
-        list.add(15);
-        list.add(15);
-        list.add("hello");
 
+        //list.add(15);
+        list.add(null);
+        list.add(15);
+
+        //list.add(9,80);
+
+        //测试直接删除元素值为null的数据
+        //int count = list.remove(null);
+        //int count = list.indexOf(null);
+        //System.out.println(count);
+        //测试根据下标删除元素值为null的数据
+        /*Object remove = list.remove(7);
+        System.out.println(remove);*/
+
+        //System.out.println(list);
+        //list.remove(2);
+        //System.out.println(list);
 
         //扩容
-        list.add(99);
-
+        //list.add(99);
+        //list.clear();
+        //list.add(99);
         //System.out.println(list.remove(5));
 
         //list.set(5,99);
@@ -51,17 +66,17 @@ public class TestDynamicArray {
         /*list.add(2,"22");*/
         list.add(21);
         list.add(12);
+        list.add(null);
         /*list.add(1,"ss");*/
         //list.set(1,99);
-        String[] strs = new String[]{"s","w","d"};
-
+        //String[] strs = new String[]{"s","w","d"};
         //list.remove(2);
         System.out.println(list);
     }
 
     @Test
     public void test3(){
-        ArrayList<Person> list = new ArrayList<>();
+        ArrayList<Object> list = new ArrayList<>();
         Person person = new Person();
         person.setAge(12);
         person.setName("sss");
