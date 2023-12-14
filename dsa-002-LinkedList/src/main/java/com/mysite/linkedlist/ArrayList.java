@@ -30,13 +30,13 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable,List<E
         elements = (E[]) new Object[capacity];
     }
 
-    public E get(int index){
+    public E get(int index){    //O(1)
         rangeCheck(index);
 
         return elements[index];
     }
 
-    public E set(int index,E element){
+    public E set(int index,E element){  //O(1)
         rangeCheck(index);
 
         E oldVal = elements[index];
@@ -59,7 +59,6 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable,List<E
         return -1;
     }
 
-
     public void clear(){
         for (int i = 0; i < size; i++) {
             elements[i] = null;
@@ -68,6 +67,12 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable,List<E
     }
 
     public void add(E element){
+        /**
+         * 最好：O(1)
+         * 最坏：O(n)
+         * 平均：O(1)
+         * 均摊：O(1)  => 经过连续的多次复杂度比较低的情况下，出现个别复杂度比较高的情况
+         */
         //判断是否需要扩容
         ensureCapacity(size + 1);
 
@@ -75,6 +80,11 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable,List<E
     }
 
     public void add(int index, E element){
+        /**
+         * 最好：O(1)
+         * 最坏：O(n)
+         * 平均：O(n)
+         */
         rangeCheckForAdd(index);
 
         //判断是否需要扩容
@@ -102,6 +112,11 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable,List<E
     }
 
     public E remove(int index){
+        /**
+         * 最好：O(1)
+         * 最坏：O(n)
+         * 平均：O(n)
+         */
         rangeCheck(index);
 
         E oldEle = elements[index];
@@ -116,20 +131,19 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable,List<E
         }*/
 
         elements[--size] = null;
+
+        //判断是否需要缩容
+        trim();
+
         return oldEle;
     }
 
-    /**
-     * 按照元素删除数组中出现的第一个元素
-     * @param element 想要删除的元素 可以是null
-     * @return 返回删除元素的下标
-     */
-    public int remove(E element){
+    public boolean remove(E element){
         //根据element查找对应的索引值
         int destIndex = indexOf(element);
 
         if (destIndex == -1)
-            throw new IndexOutOfBoundsException("未找到指定元素");
+            return false;
 
         //设置源数组移动的位置 numRemoved
         int numMoved = size - destIndex - 1;
@@ -140,7 +154,23 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable,List<E
         }*/
 
         elements[--size] = null;
-        return destIndex;
+
+        //判断是否需要缩容
+        trim();
+
+        return true;
+    }
+
+    private void trim() {
+        int oldCapacity = elements.length;
+        if (size >= (elements.length >> 1) || oldCapacity <= DEFAULT_CAPACITY)
+            return;
+
+        //当剩余空间大于总空间的一半时，进行缩容,缩容为原来的0.75倍
+        int newCapacity = oldCapacity - (oldCapacity >> 2);
+        elements = Arrays.copyOf(elements,newCapacity);
+
+        System.out.println(oldCapacity + "缩容为：" + newCapacity);
     }
 
     /**
