@@ -35,6 +35,12 @@ public interface List<E>{
      */
     E remove(int index);
     /**
+     * 按照元素删除集合中出现的第一个元素
+     * @param element 想要删除的元素 可以是null
+     * @return
+     */
+    boolean remove(E element);
+    /**
      * 根据元素查找集合中出现的第一个下标
      * @param element 需要查找的元素 可以是null
      * @return 返回集合对应的下标 或 -1
