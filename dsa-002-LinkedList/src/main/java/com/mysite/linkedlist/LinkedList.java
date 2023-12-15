@@ -2,19 +2,19 @@ package com.mysite.linkedlist;
 
 
 import java.io.Serializable;
-import java.util.TooManyListenersException;
 
 /**
  * ClassName: linkedlist
  * Package: com.mysite
  * Description
- *
+ *  双向链表
  * @Author zhl
  * @Create 2023/12/13 20:01
  * version 1.0
  */
 public class LinkedList<E> extends AbstractList<E> implements Serializable, List<E> {
     private Node<E> first;
+    private Node<E> last;
 
     /**
      * 将第一个节点设为null
@@ -22,6 +22,7 @@ public class LinkedList<E> extends AbstractList<E> implements Serializable, List
     @Override
     public void clear() {
         first = null;
+        last = null;
         size = 0;
     }
 
@@ -32,26 +33,51 @@ public class LinkedList<E> extends AbstractList<E> implements Serializable, List
      */
     @Override
     public void add(int index, E element) {
-        /**
-         * 最好：O(1)
-         * 最坏：O(n)
-         * 平均：O(n)
-         */
         rangeCheckForAdd(index);
 
-        //如果是第一个位置
-        if (index == 0){
-            first = new Node<>(element,first);
-            size ++;
+        if (index == size){
+            linkLast(element);
         }else {
-            //获取index前一个节点
-            Node<E> prev = node(index - 1);
-            //将prev的下一个节点next指向之前prev.next处的节点
-            prev.next  = new Node<>(element,prev.next);
-            size ++;
+            linkBefore(element,node(index));
         }
 
      }
+
+    /**
+     * 添加前面的节点
+     * @param element 需要添加的元素
+     * @param succNode 在index处的节点
+     */
+    private void linkBefore(E element, Node<E> succNode) {
+        //获取index处的前一个节点
+        Node<E> predNode = succNode.prev;   //如果succNode是first,则succNode.prev=null，predNode=null
+        //添加的节点
+        Node<E> newNode = new Node<>(predNode,element,succNode);
+        //拼接
+        succNode.prev = newNode;
+        if (predNode == null)  //index = 0
+            first = newNode;
+        else
+            predNode.next = newNode;
+        size ++;
+    }
+
+    /**
+     * 在末尾添加节点
+     * @param element 添加的元素
+     */
+    private void linkLast(E element) {
+        Node<E> oldLast = last;
+        Node<E> newNode = new Node<>(oldLast,element,null);
+        last = newNode;
+        //如果链表为空size = 0,oldLast可能为空
+        if (oldLast == null){   //第一次添加元素
+            first = newNode;
+        }else {
+            oldLast.next = newNode;
+        }
+        size ++;
+    }
 
     @Override
     public int indexOf(E element) {
@@ -76,22 +102,12 @@ public class LinkedList<E> extends AbstractList<E> implements Serializable, List
 
     @Override
     public E get(int index) {
-        /**
-         * 最好：O(1)
-         * 最坏：O(n)
-         * 平均：O(n)
-         */
         Node<E> node = node(index);
         return node.element;
     }
 
     @Override
     public E set(int index, E element) {
-        /**
-         * 最好：O(1)
-         * 最坏：O(n)
-         * 平均：O(n)
-         */
         //取出原来的index对应的node值
         Node<E> node = node(index);
         E oldEle = node.element;
@@ -101,36 +117,32 @@ public class LinkedList<E> extends AbstractList<E> implements Serializable, List
 
     @Override
     public E remove(int index) {
-        /**
-         * 最好：O(1)
-         * 最坏：O(n)
-         * 平均：O(n)
-         */
+        //获取index处的节点
         Node<E> oldNode = node(index);
         E oldEle = oldNode.element;
 
-        //如果删除第一个节点
-        if (index == 0){
-            first = oldNode.next;
-            size --;
+        Node<E> predNode = oldNode.prev;
+        Node<E> nextNode = oldNode.next;
+
+        if (predNode == null){  //index == 0
+            first = nextNode;   //头节点指向要删除的下一个节点
         }else {
-            //取出删除前上一个节点
-            Node<E> prev = node(index - 1);
-            //将上一个节点的next指向要删除节点的下一个节点
-            prev.next = oldNode.next;
-            size --;
+            predNode.next = nextNode;
         }
+
+        if (nextNode == null){  //index == size - 1
+            last = predNode;    //尾节点指向要删除的上一个节点
+        }else {
+            nextNode.prev = predNode;
+        }
+
+        size --;
 
         return oldEle;
     }
 
     @Override
     public boolean remove(E element) {
-        /**
-         * 最好：O(1)
-         * 最坏：O(n)
-         * 平均：O(n)
-         */
         int destIndex = indexOf(element);
 
         if (destIndex == -1)
@@ -146,26 +158,31 @@ public class LinkedList<E> extends AbstractList<E> implements Serializable, List
      * @return 返回当前索引的节点
      */
     public Node<E> node(int index){
-        /**
-         * 最好：O(1)
-         * 最坏：O(n)
-         * 平均：O(n)
-         */
         rangeCheck(index);
-
-        //遍历每一个节点
-        Node<E> node = first;
-        for (int i = 0; i < index; i++) {
-            node = node.next;
+        //index小于size/2，节点在size的左边
+        if (index < (size >> 1)){
+            Node<E> node = first;
+            for (int i = 0; i < index; i++) {
+                node = node.next;
+            }
+            return node;
+        }else {
+            //否则节点在size的右边
+            Node<E> node = last;
+            for (int i = size - 1; i > index; i--) {
+                node = node.prev;
+            }
+            return node;
         }
-        return node;
     }
 
     private static class Node<E>{
         E element;
         Node<E> next;
+        Node<E> prev;
 
-        public Node(E element, Node<E> next) {
+        public Node(Node<E> prev, E element, Node<E> next) {
+            this.prev = prev;
             this.element = element;
             this.next = next;
         }
