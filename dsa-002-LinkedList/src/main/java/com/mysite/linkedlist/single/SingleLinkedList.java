@@ -175,7 +175,6 @@ public class SingleLinkedList<E> extends AbstractList<E> implements Serializable
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-
         sb.append("[");
         for (int i = 0; i < size; i++) {
             if (i != 0){
