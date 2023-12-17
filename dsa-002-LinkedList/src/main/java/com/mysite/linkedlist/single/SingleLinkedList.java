@@ -10,7 +10,7 @@ import java.io.Serializable;
  * ClassName: linkedlist
  * Package: com.mysite
  * Description
- *  单项链表
+ *  单向链表
  * @Author zhl
  * @Create 2023/12/13 20:01
  * version 1.0
