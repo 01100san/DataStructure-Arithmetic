@@ -1,5 +1,5 @@
 # 线性表
-## 双向链表
+## [双向链表](./main/java/com/mysite/linkedlist/LinkedList.java)
 与SingleLinkedList<E>的不同
 
 <ol>
@@ -37,10 +37,18 @@ A:<p>
 在垃圾回收器运行时，不可访问的节点会被标记并最终被清除，释放相应的内存。
 
 
+### [双向循环链表](./main/java/com/mysite/linkedlist/circle/CircleLinkedList.java) 
 
-
-
-
+[约瑟夫问题](./main/java/com/mysite/linkedlist/excise/CircleLinkedList.java) 
+![](../img/JosephusProblem.png)
+采用双向循环链表解决此问题
+增设1个成员变量、3个方法
+<ul>
+    <li>current：用于指向某个节点</li>
+    <li>void reset()：让current指向头节点first</li>
+    <li>E next()：让current往后走一步，也就是current = current.next</li>
+    <li>E remove()：删除current指向的节点，删除成功后让current指向下一个节点</li>
+</ul>
 
 
 
