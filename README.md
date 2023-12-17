@@ -1,9 +1,9 @@
 # DataStructure-Arithmetic
 数据结构与算法的学习ing....、
 ## 动态数组
-[dsa-001-dynamicarray](../DataStructure-Arithmetic/dsa-001-dynamicarray)
+[dsa-001-dynamicarray](./dsa-001-dynamicarray)
 ## 链表
-[dsa-002-linkedlist](../DataStructure-Arithmetic/dsa-002-LinkedList)
+[dsa-002-linkedlist](./dsa-002-LinkedList)
 ### 双向链表 VS 动态数组
 <ul>
     <li>动态数组：
