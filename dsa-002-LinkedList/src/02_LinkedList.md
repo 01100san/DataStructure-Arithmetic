@@ -7,6 +7,7 @@
 
 <li>在LinkedList的内部类Node中新增了<code>Node< E> prev;</code></li>
 
+
 ```java
 private static class Node<E>{
     E element;
