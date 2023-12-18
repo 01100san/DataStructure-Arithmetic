@@ -1,6 +1,5 @@
 package com.mysite.list;
 
-
 import java.io.Serializable;
 
 /**
