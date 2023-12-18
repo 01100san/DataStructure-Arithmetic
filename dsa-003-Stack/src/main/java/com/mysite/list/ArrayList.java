@@ -23,6 +23,7 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable, List<
     public ArrayList() {
         this(DEFAULT_CAPACITY);
     }
+
     public ArrayList(int capacity){
         if (capacity < 0) throw new IndexOutOfBoundsException("数组容量初始化错误："+ capacity);
         //如果容量小于默认值，设为默认容量的大小，否则为指定的容量大小
