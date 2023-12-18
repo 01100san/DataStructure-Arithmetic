@@ -1,10 +1,7 @@
 package com.mysite.stack;
 
-import com.mysite.list.AbstractList;
 import com.mysite.list.ArrayList;
 import com.mysite.list.List;
-
-import javax.annotation.Resource;
 
 /**
  * ClassName: Stack
