@@ -4,7 +4,6 @@ package com.mysite.list;
  * ClassName: List
  * Package: com.mysite.linkedlist
  * Description
- *
  * @Author zhl
  * @Create 2023/12/13 20:21
  * version 1.0
