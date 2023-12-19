@@ -7,7 +7,7 @@
     <li>先进先出的的原则，First In First，FIF</li>
 </ul>
 
-### 栈的接口设计
+### 队列的接口设计
 <ul>
     <li>int size(); 获取元素的数量</li>
     <li>boolean isEmpty(); 是否为空</li>
@@ -16,5 +16,31 @@
     <li>E front(); 获取队列的头元素</li>
     <li>void clear();</li>
 </ul>
+
+队列的内部实现可以利用以前学过的数据结构 =》 动态数组 / 双向链表<p>
+优先使用双向链表，因为队列主要是往头尾操作元素<p>
+实际上java.util.LinkedList<E>就实现了Queue<E>
+## [双端队列(Deque)](./main/java/com/mysite/queue/Deque.java)
+> 双端队列是能在头尾两端添加、删除的队列。
+英文deque是double ended queue的简称
+### 双端队列的接口设计
+<ul>
+    <li>int size(); 元素的数量</li>
+    <li>boolean isEmpty(); 是否为空</li>
+    <li>void enQueueRear(E element); 从队尾入队</li>
+    <li>E deQueueFront(); 从队头出队</li>
+    <li>void enQueueFront(E element); 从队头入队</li>
+    <li>E deQueueRear(); 从队尾出队</li>
+    <li>E front(); 获取队列的头元素</li>
+    <li>E rear(); 获取队列的尾元素</li>
+</ul>
+
+## 循环队列(Circle Queue)
+> 队列底层也可以使用动态数组实现，并且各项接口也可以优化到O(1)的时间复杂度
+> 这个用数组实现并且优化之后的队列叫做：循环队列
+
+这里的循环队列底层用数组实现<p>
+循环双端队列：可以进行两端添加、删除操作的循环队列
+
 
 
