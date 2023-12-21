@@ -7,7 +7,7 @@ import com.mysite.list.List;
  * ClassName: Deque
  * Package: com.mysite.queue
  * Description
- *  双向队列
+ *  双端队列
  * @Author zhl
  * @Create 2023/12/19 19:58
  * version 1.0
@@ -21,6 +21,9 @@ public class Deque<E> {
         return list.isEmpty();
     }
 
+    public void clear(){
+        list.clear();
+    }
     /**
      * 从队尾入队
      * @param element
