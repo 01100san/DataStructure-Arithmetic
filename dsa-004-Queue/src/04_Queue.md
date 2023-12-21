@@ -35,12 +35,18 @@
     <li>E rear(); 获取队列的尾元素</li>
 </ul>
 
-## 循环队列(Circle Queue)
+## [循环队列(Circle Queue)](./main/java/com/mysite/circle/CircleQueue.java)
 > 队列底层也可以使用动态数组实现，并且各项接口也可以优化到O(1)的时间复杂度
 > 这个用数组实现并且优化之后的队列叫做：循环队列
 
 这里的循环队列底层用数组实现<p>
-循环双端队列：可以进行两端添加、删除操作的循环队列
+接口设计和普通队列(Queue)的设计类似，结合了ArrayList< E>的用法
 
+## [循环双端队列(Circle Deque)](./main/java/com/mysite/circle/CircleDeque.java)
+循环双端队列：可以进行两端添加、删除操作的循环队列<p>
+接口设计和双端队列的设计一样
 
+>**对于循环队列和循环双端队列中取模运算的问题的优化`int index(int index)`：**
+在计算机中取模、乘除运算效率比较低，经过分析[testMod](../src/test/java/com/mysite/queue/TestMod.java)
+，并且(front + index)不可能超过 element.length的两倍
 

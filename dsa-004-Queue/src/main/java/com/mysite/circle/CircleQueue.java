@@ -27,6 +27,13 @@ public class CircleQueue<E> {
     public boolean isEmpty(){
         return size == 0;
     }
+    public void clear(){
+        for (int i = 0; i < size; i++) {
+            elements[index(i)] = null;
+        }
+        size = 0;
+        front = 0;
+    }
     //入队
     public void enQueue(E element){
         ensureCapacity(size + 1);
@@ -75,7 +82,9 @@ public class CircleQueue<E> {
     }
     //想要使用循环的特性，通过取模获取下标
     private int index(int index){
-        return (front + index) % elements.length;
+        index += front;
+        return index - (index >= elements.length ? elements.length : 0);
+        //return (front + index) % elements.length;
     }
 
     public E front(){
