@@ -1,4 +1,4 @@
-## [二叉搜索树(Binary Search Tree)](./main/java/com/mysite/binarysearchtree/BinarySearchTree.java)
+## [二叉搜索树(Binary Search Tree)](./main/java/com/mysite/binarytree/BinarySearchTree.java)
 ### 二叉搜索树的接口设计
 
 <ul>
@@ -47,4 +47,8 @@
 > 2. 循环执行以下操作，直到队列为空
 > 
 > 将队头节点A出队，进行访问。将A的左子节点入队，将A的右子节点入队
-> 
+
+前驱节点：中序遍历时的前一个节点
+
+
+
