@@ -232,7 +232,7 @@ public class BinaryTree<E> implements BinaryTreeInfo {
     }
     //1.递归计算树的高度
     //树的高度实际上是子节点高度 + 1
-    private int height(Node<E> node){
+    private int height(Node<E> node) {
         if (node == null) return 0;
 
         return 1 + Math.max(height(node.left),height(node.right));
@@ -252,6 +252,12 @@ public class BinaryTree<E> implements BinaryTreeInfo {
         }
         public boolean hasTwoChildren(){
             return left != null && right != null;
+        }
+        public boolean isLeftChild(){
+            return parent != null && this == parent.left;
+        }
+        public boolean isRightChild(){
+            return parent != null && this == parent.right;
         }
     }
 
@@ -280,7 +286,8 @@ public class BinaryTree<E> implements BinaryTreeInfo {
     @Override
     //返回node的元素值
     public Object string(Object node){
-        return ((Node<E>)node).element;
+        //return ((Node<E>)node).element;
+        return node;
     }
     public void toString(Node<E> node,StringBuilder sb,String prefix){
         if (node == null) return;

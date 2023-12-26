@@ -29,5 +29,13 @@ public class TestAVLTree {
         }
 
         BinaryTrees.println(bst);
+        bst.remove(2);
+        System.out.println("------------------------------------------------------------------------------------");
+        BinaryTrees.println(bst);
+        bst.remove(1);
+        System.out.println("------------------------------------------------------------------------------------");
+        BinaryTrees.println(bst);
     }
 }
+
+

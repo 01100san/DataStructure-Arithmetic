@@ -66,6 +66,11 @@ public class BST<E> extends BinaryTree<E> {
      * @param node
      */
     protected void afterAdd(Node<E> node){}
+    /**
+     * 留给AVL树处理添加的节点
+     * @param node
+     */
+    protected void afterRemove(Node<E> node){}
     public boolean contains(E element){
         return node(element) != null;
     }
@@ -104,9 +109,15 @@ public class BST<E> extends BinaryTree<E> {
             }else{
                 node.parent.right = repNode;
             }
+
+            //删除节点之后的处理-->AVL
+            afterRemove(node);
         }else if (node.parent == null){
             //node是度为0 的节点，并且是根节点
             root = null;
+
+            //删除节点之后的处理-->AVL
+            afterRemove(node);
         }else {
             //node是度为0 的节点，但不是根节点
             if (node == node.parent.left){
@@ -114,6 +125,9 @@ public class BST<E> extends BinaryTree<E> {
             }else {
                 node.parent.right = null;
             }
+
+            //删除节点之后的处理-->AVL
+            afterRemove(node);
         }
     }
     private Node<E> node(E element) {

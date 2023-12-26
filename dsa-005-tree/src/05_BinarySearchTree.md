@@ -1,4 +1,4 @@
-## [二叉搜索树(Binary Search Tree)](./main/java/com/mysite/binarytree/BinarySearchTree.java)
+## [二叉搜索树(Binary Search Tree)](./main/java/com/mysite/binarysearchtree/BST.java)
 ### 二叉搜索树的接口设计
 
 <ul>
