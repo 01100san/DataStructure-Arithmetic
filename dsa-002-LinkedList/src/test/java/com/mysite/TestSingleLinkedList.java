@@ -3,7 +3,7 @@ package com.mysite;
 import com.mysite.linkedlist.ArrayList;
 import com.mysite.linkedlist.single.SingleLinkedList;
 import com.mysite.linkedlist.List;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * ClassName: TestLinkedList

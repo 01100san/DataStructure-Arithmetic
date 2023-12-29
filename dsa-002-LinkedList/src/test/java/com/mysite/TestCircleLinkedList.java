@@ -3,7 +3,7 @@ package com.mysite;
 import com.mysite.linkedlist.List;
 import com.mysite.linkedlist.circle.CircleLinkedList;
 import jdk.nashorn.internal.runtime.ListAdapter;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * ClassName: TestCircleLinkedList

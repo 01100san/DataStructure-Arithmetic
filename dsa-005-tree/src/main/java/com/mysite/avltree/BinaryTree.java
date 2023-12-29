@@ -239,10 +239,10 @@ public class BinaryTree<E> implements BinaryTreeInfo {
     }
 
     protected static class Node<E>{
-        E element;
-        Node<E> left;   //左节点
-        Node<E> right;  //右节点
-        Node<E> parent; //父节点
+        public E element;
+        public Node<E> left;   //左节点
+        public Node<E> right;  //右节点
+        public Node<E> parent; //父节点
         public Node(E element,Node<E> parent){
             this.element = element;
             this.parent = parent;
@@ -258,6 +258,16 @@ public class BinaryTree<E> implements BinaryTreeInfo {
         }
         public boolean isRightChild(){
             return parent != null && this == parent.right;
+        }
+        //判断是否是兄弟节点
+        public Node<E> sibling(){
+            if (isLeftChild()){
+                return parent.right;
+            }
+            if (isRightChild()){
+                return parent.left;
+            }
+            return null;
         }
     }
 

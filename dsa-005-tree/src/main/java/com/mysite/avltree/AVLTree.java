@@ -1,11 +1,6 @@
 package com.mysite.avltree;
 
-
-import com.sun.javafx.scene.control.SelectedCellsMap;
-
-import java.awt.font.GraphicAttribute;
 import java.util.Comparator;
-import java.util.Map;
 
 /**
  * ClassName: AVLTree
@@ -16,9 +11,9 @@ import java.util.Map;
  * @Create 2023/12/24 21:03
  * version 1.0
  */
-public class AVLTree<E> extends BST<E> {
+public class AVLTree<E> extends BBST<E> {
     public AVLTree(){}
-    public AVLTree(Comparator<E> comparator){
+    public AVLTree(Comparator<E> comparator) {
         super(comparator);
     }
     @Override
@@ -59,50 +54,6 @@ public class AVLTree<E> extends BST<E> {
             }
         }
     }
-    //左旋转
-    public void rotateLeft(Node<E> grand){
-        Node<E> parent = grand.right;
-        Node<E> child = parent.left;
-        grand.right = parent.left;
-        parent.left = grand;
-
-        //旋转后的操作
-        afterRotate(parent,grand,child);
-    }
-    //右旋转
-    public void rotateRight(Node<E> grand){
-        Node<E> parent = grand.left;
-        Node<E> child = parent.right;
-        grand.left = parent.right;
-        parent.right = grand;
-
-        //旋转后的操作
-        afterRotate(parent,grand,child);
-    }
-
-    private void afterRotate (Node<E> parent,Node<E> grand,Node<E> child){
-        //让parent成为子树的根节点
-        parent.parent = grand.parent;
-        //更新grand.parent中的左或右节点
-        if (grand.isLeftChild()){
-            grand.parent.left = parent;
-        }else if (grand.isRightChild()){
-            grand.parent.right = parent;
-        }else { //grand == root
-            root = parent;
-        }
-
-        //更新child中的parent
-        if (child != null){
-            child.parent = grand;
-        }
-        //更新grand的parent
-        grand.parent = parent;
-
-        //更新高度
-        updateHeight(grand);
-        updateHeight(parent);
-    }
 
     @Override
     protected void afterRemove(Node<E> node) {
@@ -117,6 +68,14 @@ public class AVLTree<E> extends BST<E> {
                 break;
             }
         }
+    }
+
+    @Override
+    protected void afterRotate(Node<E> parent, Node<E> grand, Node<E> child) {
+        super.afterRotate(parent, grand, child);
+        //更新高度
+        updateHeight(grand);
+        updateHeight(parent);
     }
 
     @Override

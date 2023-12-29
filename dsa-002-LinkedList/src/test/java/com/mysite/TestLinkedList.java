@@ -2,7 +2,7 @@ package com.mysite;
 
 import com.mysite.linkedlist.LinkedList;
 import com.mysite.linkedlist.List;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * ClassName: TestLinkedList
