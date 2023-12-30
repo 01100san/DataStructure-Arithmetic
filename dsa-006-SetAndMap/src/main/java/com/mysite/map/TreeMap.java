@@ -367,7 +367,7 @@ public class TreeMap<K,V> implements Map<K,V>{
         }
         return null;
     }
-    public int compare(K e1,K e2){
+    private int compare(K e1,K e2){
         //如果比较器不等于空，说明用户想使用比较器，就用用户定义的比较器进行比较
         if (comparator != null){
             return comparator.compare(e1,e2);

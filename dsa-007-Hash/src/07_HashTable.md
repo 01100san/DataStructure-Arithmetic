@@ -85,10 +85,10 @@ key 的常见种类可能有
     31 是一个奇素数，JVM会将 `31 * i` 优化成`(i<<5)-i`<br>
 - 自定义对象的哈希值<br>
     重写hashCode方法,默认通过内存地址计算得到hashCode<br>
-<p>🤔思考：
+<p>🤔思考：<br>
 1. 哈希值太大，整型溢出怎么办？<br>
-    不做任何处理。
+    不做任何处理。<br>
 2. 不重写hashCode方法会怎么样？<br>
-   会使用Object默认的hashCode实现-》底层是使用内存中的位置作为hashCode
+   会使用Object默认的hashCode实现-》底层是使用内存中的位置作为hashCode<br>
 
 
