@@ -71,7 +71,7 @@ public class AVLTree<E> extends BBST<E> {
     }
 
     @Override
-    protected void afterRotate(Node<E> parent, Node<E> grand, Node<E> child) {
+    protected void afterRotate(Node<E> grand, Node<E> parent, Node<E> child) {
         super.afterRotate(parent, grand, child);
         //更新高度
         updateHeight(grand);

@@ -8,7 +8,7 @@ import java.util.Queue;
  * ClassName: TreeMap
  * Package: com.mysite.map
  * Description
- *
+ *  TreeMap 红黑树实现，logn
  * @Author zhl
  * @Create 2023/12/28 20:38
  * version 1.0
@@ -142,7 +142,7 @@ public class TreeMap<K,V> implements Map<K,V>{
         //旋转后的操作
         afterRotate(grand,parent,child);
     }
-    private void afterRotate (Node<K, V> parent,Node<K, V> grand,Node<K, V> child){
+    private void afterRotate (Node<K, V> grand,Node<K, V> parent,Node<K, V> child){
         //让parent成为子树的根节点
         parent.parent = grand.parent;
         //更新grand.parent中的左或右节点

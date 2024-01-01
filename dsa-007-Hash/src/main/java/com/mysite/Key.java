@@ -25,11 +25,11 @@ public class Key {
 
     @Override
     public int hashCode() {
-        return value / 20;
+        return 0;
     }
 
     @Override
     public String toString() {
-        return "v(" + value + ")" ;
+        return value+"";
     }
 }

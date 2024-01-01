@@ -2,7 +2,6 @@ package com.mysite;
 
 import com.mysite.map.Map;
 import com.mysite.map.TreeMap;
-import com.mysite.map.TreeMapp;
 import org.junit.Test;
 
 /**
@@ -32,7 +31,7 @@ public class TestMap {
     }
     @Test
     public void test2(){
-        Map<String, Integer> map = new TreeMapp<>();
+        Map<String, Integer> map = new TreeMap<>();
         map.put("class",2);
         map.put("public",5);
         map.put("test",3);

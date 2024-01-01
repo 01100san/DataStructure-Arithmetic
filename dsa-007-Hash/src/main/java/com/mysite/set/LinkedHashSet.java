@@ -1,20 +1,20 @@
 package com.mysite.set;
 
+import com.mysite.map.LinkedHashMap;
 import com.mysite.map.Map;
-import com.mysite.map.TreeMap;
 
 /**
- * ClassName: TreeSet
+ * ClassName: LinkedHashSet
  * Package: com.mysite.set
  * Description
- *  TreeSet -> TreeMap
+ *  LinkedHashSet -> LinkedHashMap
  * @Author zhl
- * @Create 2023/12/29 14:20
+ * @Create 2024/1/1 11:00
  * version 1.0
  */
-public class TreeSet<E> implements Set<E>{
-    //Map<E, Object> map = new TreeMapp<>();
-    Map<E, Object> map = new TreeMap<>(); //TreeMap存在bug
+public class LinkedHashSet<E> implements Set<E> {
+    private LinkedHashMap<E,Object> map = new LinkedHashMap<>();
+
     @Override
     public int size() {
         return map.size();

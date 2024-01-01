@@ -1,4 +1,4 @@
-### 哈希表(HashTable)
+### 哈希表(HashMap)
 哈希表也叫做散列表(hash有"剁碎”的意思)
 ![](../img/hash.png)
 添加、搜索、删除的流程都是类似的
@@ -41,6 +41,7 @@ public int hash(Object key){
 }
 ```
 为了提高效率，可以使用 & 位运算取代 % 运算【前提：将数组的长度设计为2的幂（2<sup>n</sup>）】<br>
+如果不想使用位运算，那么取模操作(%)中的数组长度尽量为素数(减少哈希冲突)。<br>
 ![](../img/hashfun.png)
 ```java
 public int hash(Object key){
@@ -88,7 +89,15 @@ key 的常见种类可能有
 <p>🤔思考：<br>
 1. 哈希值太大，整型溢出怎么办？<br>
     不做任何处理。<br>
-2. 不重写hashCode方法会怎么样？<br>
-   会使用Object默认的hashCode实现-》底层是使用内存中的位置作为hashCode<br>
+2. 不重写hashCode方法会怎么样?<br>  
+会使用Object默认的hashCode实现-》底层是使用内存中的位置作为hashCode
 
+  
 
+### 装填因子(负载因子 Load Factor)
+> 节点总数量 / 哈希表桶数组长度，也叫做负载因子
+
+在JDK1.8的HashMap中，如果装填因子超过0.75，就扩容为原来的2倍
+
+1  
+2

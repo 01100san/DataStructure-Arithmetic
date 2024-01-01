@@ -42,4 +42,13 @@ public class Person {
                 && height == person.height
                 && Objects.equals(person.name,name);
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", height=" + height +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

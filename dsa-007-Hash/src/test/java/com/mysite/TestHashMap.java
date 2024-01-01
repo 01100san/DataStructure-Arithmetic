@@ -3,6 +3,9 @@ package com.mysite;
 import com.mysite.map.HashMap;
 import com.mysite.map.Map;
 import org.junit.Test;
+import sun.security.provider.ConfigFile;
+
+import java.util.Arrays;
 
 /**
  * ClassName: TestHashMap
@@ -55,7 +58,7 @@ public class TestHashMap {
     }
     @Test
     public void test2(){
-        HashMap<Key, Integer> map = new HashMap<>();
+        HashMap<Object, Integer> map = new HashMap<>();
         for (int i = 1; i <= 19; i++) {
             map.put(new Key(i),i);
         }
@@ -68,6 +71,30 @@ public class TestHashMap {
                 return false;
             }
         });*/
-        //map.print();
+        map.print();
+    }
+    @Test
+    public void test3(){
+        HashMap<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < 100; i++) {
+            map.put(i + "",i);
+        }
+        /*map.traversal(new Map.Visitor<String, Integer>() {
+            @Override
+            public boolean visit(String key, Integer value) {
+                System.out.print(key + "_" + value + "  ");
+                return false;
+            }
+        });*/
+        System.out.println();
+        map.print();
+    }
+    @Test
+    public void test4(){
+        HashMap<Person, Integer> map = new HashMap<>();
+        for (int i = 1; i <= 10; i++) {
+            map.put(new Person(i,12f,"name " + i),i);
+        }
+        map.print();
     }
 }

@@ -25,7 +25,7 @@ public class BBST<E> extends BST<E>{
         parent.left = grand;
 
         //旋转后的操作
-        afterRotate(parent,grand,child);
+        afterRotate(grand,parent,child);
     }
     //右旋转
     protected void rotateRight(Node<E> grand){
@@ -35,10 +35,10 @@ public class BBST<E> extends BST<E>{
         parent.right = grand;
 
         //旋转后的操作
-        afterRotate(parent,grand,child);
+        afterRotate(grand,parent,child);
     }
 
-    protected void afterRotate (Node<E> parent,Node<E> grand,Node<E> child){
+    protected void afterRotate (Node<E> grand,Node<E> parent,Node<E> child){
         //让parent成为子树的根节点
         parent.parent = grand.parent;
         //更新grand.parent中的左或右节点

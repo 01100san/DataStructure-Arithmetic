@@ -1,20 +1,20 @@
 package com.mysite.set;
 
+import com.mysite.map.HashMap;
 import com.mysite.map.Map;
-import com.mysite.map.TreeMap;
 
 /**
- * ClassName: TreeSet
+ * ClassName: HashSet
  * Package: com.mysite.set
  * Description
- *  TreeSet -> TreeMap
+ *  HashSet -> HashMap
  * @Author zhl
- * @Create 2023/12/29 14:20
+ * @Create 2024/1/1 10:53
  * version 1.0
  */
-public class TreeSet<E> implements Set<E>{
-    //Map<E, Object> map = new TreeMapp<>();
-    Map<E, Object> map = new TreeMap<>(); //TreeMap存在bug
+public class HashSet<E> implements Set<E> {
+    private HashMap<E,Object> map = new HashMap<>();
+
     @Override
     public int size() {
         return map.size();
