@@ -37,3 +37,11 @@
 ### HashMap、LinkedHashMap、HashSet、LinkedHashSet
 [dsa-007-Hash](./dsa-007-Hash/src/main/java/com/mysite)
 
+### Heap(二叉堆)
+[dsa-008-Heap](./dsa-008-Heap/src/main/java/com/mysite)
+
+### PriorityQueue(优先级队列)
+[dsa-009-PriorityQueue](./dsa-009-PriorityQueue/src/main/java/com/mysite)
+
+### Trie(前缀树)
+[dsa-010-Trie](./dsa-010-Trie/src/main/java/com/mysite)

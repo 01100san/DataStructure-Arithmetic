@@ -76,9 +76,7 @@ public class TestBinaryHeap {
                     heap.replace(data[i]);
                 }
             }
-
         }
-
         BinaryTrees.println(heap);
     }
 }
